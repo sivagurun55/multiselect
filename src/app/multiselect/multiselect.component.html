@@ -1,0 +1,12 @@
+<h2>Search/Filter Dropdown</h2>
+<div class="dropdown">
+  <button (click)="showDropdownlist()" class="dropbtn">Select <i class="arrow down"></i> </button>
+  <div id="myDropdown" class="dropdown-content" *ngIf = "showDropDown">
+    <input type="text" placeholder="Search.." *ngIf = "filter" id="myInput" [(ngModel)]="searchKeyword" (ngModelChange)="showList($event)">
+    <div id ="option" *ngFor ="let country of showCountry;index as i" >
+    <input type="checkbox" (change) = "getSelectedCountry($event,country)" *ngIf ="hasProp(country); else elseBlock" checked>
+    <ng-template #elseBlock><input type="checkbox" (change) = "getSelectedCountry($event,country)" ></ng-template> 
+      {{country.name}}
+    </div>
+  </div>
+</div>
